@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris Pro Web</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="favicon.ico" type="image/x-icon">
+  <link rel="apple-touch-icon" href="apple-touch-icon.png">
+  <link rel="icon" sizes="192x192" href="android-chrome-192x192.png">
+  <link rel="icon" sizes="512x512" href="android-chrome-512x512.png">
+  <meta name="msapplication-TileImage" content="mstile-150x150.png">
+  <meta name="msapplication-TileColor" content="#000000">
+
+  <!-- Google Nunito -->
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;700&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      font-family: 'Nunito', sans-serif;
+    }
+    canvas {
+      border-radius: 0.5rem;
+      border: 2px solid #d1d5db; /* Tailwind gray-300 */
+      background-color: #ffffff; /* Canvas putih */
+    }
+  </style>
+</head>
+<body class="bg-white text-black flex flex-col items-center min-h-screen">
+
+  <header class="mt-4 mb-3 text-center">
+    <h1 class="text-2xl font-bold text-gray-900">Tetris Pro Web</h1>
+  </header>
+
+  <main class="flex flex-col md:flex-row items-start justify-center gap-6 w-full max-w-6xl px-4">
+    
+    <div class="flex flex-col sm:flex-row gap-6 justify-item-center">
+      <canvas id="tetris-board" class="w-[300px] max-h-screen" height="600"></canvas>
+
+      <div class="flex flex-row sm:flex-col gap-3 w-[300px] sm:w-full">
+        <!-- Next Piece -->
+        <div class="p-4 border border-gray-200 rounded w-full">
+          <h3 class="text-gray-800 font-semibold mb-2 text-center">Next</h3>
+          <canvas id="next-canvas" width="100" height="100" class="mx-auto rounded w-full"></canvas>
+        </div>
+
+        <!-- Hold Piece -->
+        <div class="p-4 border border-gray-200 rounded w-full">
+          <h3 class="text-gray-800 font-semibold mb-2 text-center">Hold</h3>
+          <canvas id="hold-canvas" width="100" height="100" class="mx-auto rounded w-full"></canvas>
+        </div>
+
+        <!-- Score Board -->
+        <div class="p-4 border border-gray-200 rounded w-full text-center font-bold space-y-1">
+          <p class="text-gray-800 sm:text-xl">Score:&nbsp;<span id="score">0</span></p>
+          <p class="text-gray-800">Level:&nbsp;<span id="level">1</span></p>
+          <p class="text-gray-800">Lines:&nbsp;<span id="lines">0</span></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="p-4 border border-gray-200 rounded w-[300px] sm:w-[360px] text-gray-800">
+      <h3 class="font-semibold mb-2 text-center text-xl">Panduan & Tips</h3>
+
+      <h4 class="font-semibold mt-4">Kontrol:</h4>
+      <ul class="list-disc pl-5 space-y-1 text-sm">
+        <li><strong>Arrow Down:</strong> Soft Drop (turun lebih cepat)</li>
+        <li><strong>Arrow Left / Right:</strong> Geser Tetromino</li>
+        <li><strong>Space:</strong> Rotasi Tetromino</li>
+        <li><strong>Enter:</strong> Hard Drop (turun langsung)</li>
+        <li><strong>Shift:</strong> Hold Tetromino</li>
+      </ul>
+
+      <h4 class="font-semibold mt-4">Fitur Hold:</h4>
+      <p class="text-sm">
+        Tekan <strong>Shift</strong> untuk menyimpan tetromino saat ini ke slot Hold. 
+        Bisa menukar tetromino aktif dengan yang disimpan. Hanya bisa hold satu kali per tetromino turun.
+      </p>
+
+      <h4 class="font-semibold mt-4">Score & Level:</h4>
+      <p class="text-sm">
+        Menyelesaikan baris menambah skor. Level naik setiap 10 baris, mempercepat jatuhnya tetromino.
+      </p>
+
+      <h4 class="font-semibold mt-3">Tips Strategi:</h4>
+      <ul class="list-disc pl-5 space-y-1 text-sm">
+        <li>Gunakan Hold untuk menyimpan tetromino penting (misal I-Tetromino).</li>
+        <li>Perhatikan next piece untuk merencanakan rotasi dan posisi.</li>
+        <li>Coba buat ruang kosong di satu sisi untuk line clear lebih mudah.</li>
+      </ul>
+    </div>
+
+  </main>
+
+  <footer class="mt-10 text-center text-gray-500 border-t border-gray-200 pt-4 w-[860px] text-sm">
+    &copy; 2026 Tetris Pro Web
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
